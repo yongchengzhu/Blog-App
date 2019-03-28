@@ -3,7 +3,9 @@ import React from 'react';
 class Landing extends React.Component {
   render() {
     return (
-      <div>Landing Page</div>
+      <div>
+        This is a simple blog application. Join us today with your Google account and start creating blogs.
+      </div>
     );
   }
 }

@@ -30,9 +30,27 @@ A simple blog built with React and Redux.
    export default createBrowserHistory();
    ```
 
-3. Setup Landing page route.
+3. Setup the root route for now inside of App.
 
-   First create the Landing page component `src/components/blogs/Landing.js`.
+    ```jsx
+    import { Router, Route } from 'react-router-dom';
+    import history from '../history';
+    import Landing from './blogs/Landing';
+
+    class App extends React.Component {
+      render() {
+        return (
+          <Router history={history}>
+            <Route path="/" />
+          </Router>
+        );
+      }
+    }
+    ```
+
+### Landing Page
+
+1. Create the Landing page component `src/components/blogs/Landing.js`
 
    ```jsx
    import React from 'react';
@@ -48,22 +66,49 @@ A simple blog built with React and Redux.
    export default Landing;
    ```
 
-   Next, create a route for the Landing page inside of App.
+2. Inside of App, make the root route show the Landing page.
 
    ```jsx
-   import { Router, Route } from 'react-router-dom';
-   import history from '../history';
    import Landing from './blogs/Landing';
    
-   class App extends React.Component {
+   ...
+         <Router history={history}>
+           <Route path="/" component={Landing} />
+         </Router>
+   ...
+   ```
+
+### **Header**
+
+1. Create the Header component inside `src\components\Header.js`
+
+   ```jsx
+   import React from 'react';
+   
+   class Header extends React.Component {
      render() {
        return (
-         <Router history={history}>
-           <Route path="/" />
-         </Router>
+         <div style={{ marginBottom: '25px' }}>
+           <span>Home</span>
+           <span style={{ float: 'right' }}>Sign In</span>
+         </div>
        );
      }
    }
+   export default Header;
+   ```
+
+2. Show the Header component on all routes.
+
+   ```jsx
+   import Header from './Header'
+   
+   ...
+         <Router history={history}>
+           <Header />
+           <Route path="/" component={Landing} />
+         </Router>
+   ...
    ```
 
    
